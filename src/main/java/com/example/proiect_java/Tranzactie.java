@@ -35,15 +35,5 @@ public class Tranzactie {
         return dataTranzactie;
     }
 
-    @Override
-    public String toString() {
-        return "Tranzactie{" +
-                "idTranzactie=" + idTranzactie +
-                ", idClient=" + idClient +
-                ", idMagazin=" + idMagazin +
-                ", sumaTranzactie=" + sumaTranzactie +
-                ", dataTranzactie='" + dataTranzactie + '\'' +
-                '}';
-    }
 }
 
