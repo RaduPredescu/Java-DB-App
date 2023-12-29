@@ -44,6 +44,21 @@ public class DatabaseApp extends Application {
     private TextField updatedLocatieMagazin;
     private TextField updatedTipProduse;
     private TableView<Magazin> magazinTableView;
+    private TextField tranzactieID;
+    private TextField tranzactieClientID;
+    private TextField tranzactieMagazinID;
+    private TextField sumaTranzactie;
+    private TextField dataTranzactie;
+    private Button addTranzactieButton;
+    private TextField deleteTranzactieID;
+    private Button deleteTranzactieButton;
+    private TextField updateTranzactieID;
+    private TextField updatedTranzactieClientID;
+    private TextField updatedTranzactieMagazinID;
+    private TextField updatedSumaTranzactie;
+    private TextField updatedDataTranzactie;
+    private Button updateTranzactieButton;
+    private TableView<Tranzactie> tranzactieTableView;
 
     public static void main(String[] args) {
         launch(args);
@@ -90,7 +105,7 @@ public class DatabaseApp extends Application {
         GridPane.setConstraints(numarTelefon, 1, 4);
 
         Button addButton = new Button("Add to Database");
-        addButton.setOnAction(e -> addToDatabase());
+        addButton.setOnAction(e -> addClientToDatabase());
         GridPane.setConstraints(addButton, 1, 5);
 
         Label deleteIdLabel = new Label("ID to delete:");
@@ -100,7 +115,7 @@ public class DatabaseApp extends Application {
         GridPane.setConstraints(deleteID, 1, 6);
 
         Button deleteButton = new Button("Delete from Database");
-        deleteButton.setOnAction(e -> deleteFromDatabase());
+        deleteButton.setOnAction(e -> deleteClientFromDatabase());
         GridPane.setConstraints(deleteButton, 1, 7);
 
         Label updateIdLabel = new Label("ID to update:");
@@ -134,7 +149,7 @@ public class DatabaseApp extends Application {
         GridPane.setConstraints(updatedNumarTelefon, 3, 4);
 
         updateButton = new Button("Update Record");
-        updateButton.setOnAction(e -> updateRecord());
+        updateButton.setOnAction(e -> updateClientRecord());
         GridPane.setConstraints(updateButton, 3, 5);
 
 
@@ -236,6 +251,101 @@ public class DatabaseApp extends Application {
         GridPane.setConstraints(clientTableView, 0, 8, 4, 1);
         GridPane.setConstraints(magazinTableView, 4, 8, 4, 1);
 
+
+        Label tranzactieIDLabel = new Label("Tranzactie ID:");
+        GridPane.setConstraints(tranzactieIDLabel, 8, 0);
+
+        tranzactieID = new TextField();
+        GridPane.setConstraints(tranzactieID, 9, 0);
+
+        Label tranzactieClientIDLabel = new Label("Client ID:");
+        GridPane.setConstraints(tranzactieClientIDLabel, 8, 1);
+
+        tranzactieClientID = new TextField();
+        GridPane.setConstraints(tranzactieClientID, 9, 1);
+
+        Label tranzactieMagazinIDLabel = new Label("Magazin ID:");
+        GridPane.setConstraints(tranzactieMagazinIDLabel, 8, 2);
+
+        tranzactieMagazinID = new TextField();
+        GridPane.setConstraints(tranzactieMagazinID, 9, 2);
+
+        Label sumaTranzactieLabel = new Label("Suma Tranzactie:");
+        GridPane.setConstraints(sumaTranzactieLabel, 8, 3);
+
+        sumaTranzactie = new TextField();
+        GridPane.setConstraints(sumaTranzactie, 9, 3);
+
+        Label dataTranzactieLabel = new Label("Data Tranzactie:");
+        GridPane.setConstraints(dataTranzactieLabel, 8, 4);
+
+        dataTranzactie = new TextField();
+        GridPane.setConstraints(dataTranzactie, 9, 4);
+
+        addTranzactieButton = new Button("Add Tranzactie to Database");
+        addTranzactieButton.setOnAction(e -> addTranzactieToDatabase());
+        GridPane.setConstraints(addTranzactieButton, 9, 5);
+
+        Label deleteTranzactieIdLabel = new Label("Tranzactie ID to delete:");
+        GridPane.setConstraints(deleteTranzactieIdLabel, 8, 6);
+
+        deleteTranzactieID = new TextField();
+        GridPane.setConstraints(deleteTranzactieID, 9, 6);
+
+        deleteTranzactieButton = new Button("Delete Tranzactie from Database");
+        deleteTranzactieButton.setOnAction(e -> deleteTranzactieFromDatabase());
+        GridPane.setConstraints(deleteTranzactieButton, 9, 7);
+
+        Label updateTranzactieIdLabel = new Label("Tranzactie ID to update:");
+        GridPane.setConstraints(updateTranzactieIdLabel, 10, 0);
+
+        updateTranzactieID = new TextField();
+        GridPane.setConstraints(updateTranzactieID, 11, 0);
+
+        Label updatedTranzactieClientIDLabel = new Label("Updated Client ID:");
+        GridPane.setConstraints(updatedTranzactieClientIDLabel, 10, 1);
+
+        updatedTranzactieClientID = new TextField();
+        GridPane.setConstraints(updatedTranzactieClientID, 11, 1);
+
+        Label updatedTranzactieMagazinIDLabel = new Label("Updated Magazin ID:");
+        GridPane.setConstraints(updatedTranzactieMagazinIDLabel, 10, 2);
+
+        updatedTranzactieMagazinID = new TextField();
+        GridPane.setConstraints(updatedTranzactieMagazinID, 11, 2);
+
+        Label updatedSumaTranzactieLabel = new Label("Updated Suma Tranzactie:");
+        GridPane.setConstraints(updatedSumaTranzactieLabel, 10, 3);
+
+        updatedSumaTranzactie = new TextField();
+        GridPane.setConstraints(updatedSumaTranzactie, 11, 3);
+
+        Label updatedDataTranzactieLabel = new Label("Updated Data Tranzactie:");
+        GridPane.setConstraints(updatedDataTranzactieLabel, 10, 4);
+
+        updatedDataTranzactie = new TextField();
+        GridPane.setConstraints(updatedDataTranzactie, 11, 4);
+
+        updateTranzactieButton = new Button("Update Tranzactie Record");
+        updateTranzactieButton.setOnAction(e -> updateTranzactieRecord());
+        GridPane.setConstraints(updateTranzactieButton, 11, 5);
+
+        tranzactieTableView = new TableView<>();
+        TableColumn<Tranzactie, Integer> tranzactieIdColumn = new TableColumn<>("Tranzactie ID");
+        tranzactieIdColumn.setCellValueFactory(new PropertyValueFactory<>("idTranzactie"));
+        TableColumn<Tranzactie, Integer> tranzactieClientIDColumn = new TableColumn<>("Client ID");
+        tranzactieClientIDColumn.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+        TableColumn<Tranzactie, Integer> tranzactieMagazinIDColumn = new TableColumn<>("Magazin ID");
+        tranzactieMagazinIDColumn.setCellValueFactory(new PropertyValueFactory<>("idMagazin"));
+        TableColumn<Tranzactie, Double> sumaTranzactieColumn = new TableColumn<>("Suma Tranzactie");
+        sumaTranzactieColumn.setCellValueFactory(new PropertyValueFactory<>("sumaTranzactie"));
+        TableColumn<Tranzactie, String> dataTranzactieColumn = new TableColumn<>("Data Tranzactie");
+        dataTranzactieColumn.setCellValueFactory(new PropertyValueFactory<>("dataTranzactie"));
+
+        tranzactieTableView.getColumns().addAll(tranzactieIdColumn, tranzactieClientIDColumn, tranzactieMagazinIDColumn, sumaTranzactieColumn, dataTranzactieColumn);
+        GridPane.setConstraints(tranzactieTableView, 8, 8, 4, 1);
+
+
         grid.getChildren().addAll(
                 idLabel, ID, numeLabel, nume, prenumeLabel, prenume, cnpLabel, cnp,
                 numarTelefonLabel, numarTelefon, addButton, deleteIdLabel, deleteID, deleteButton,
@@ -245,7 +355,12 @@ public class DatabaseApp extends Application {
                 addMagazinButton, deleteMagazinIdLabel, deleteMagazinID, deleteMagazinButton,
                 updateIdMagazinLabel, updateID_magazin, updatedNumeMagazinLabel, updatedNumeMagazin,
                 updatedLocatieMagazinLabel, updatedLocatieMagazin, updatedTipProduseLabel, updatedTipProduse,
-                updateMagazinButton, magazinTableView
+                updateMagazinButton, magazinTableView, tranzactieIDLabel, tranzactieID, tranzactieClientIDLabel, tranzactieClientID, tranzactieMagazinIDLabel, tranzactieMagazinID,
+                sumaTranzactieLabel, sumaTranzactie, dataTranzactieLabel, dataTranzactie, addTranzactieButton,
+                deleteTranzactieIdLabel, deleteTranzactieID, deleteTranzactieButton,
+                updateTranzactieIdLabel, updateTranzactieID, updatedTranzactieClientIDLabel, updatedTranzactieClientID,
+                updatedTranzactieMagazinIDLabel, updatedTranzactieMagazinID, updatedSumaTranzactieLabel, updatedSumaTranzactie,
+                updatedDataTranzactieLabel, updatedDataTranzactie, updateTranzactieButton, tranzactieTableView
         );
 
         Scene scene = new Scene(grid, 1200, 600);
@@ -255,10 +370,11 @@ public class DatabaseApp extends Application {
 
         loadClientData();
         loadMagazinData();
+        loadTranzactieData();
     }
 
 
-    private void addToDatabase() {
+    private void addClientToDatabase() {
         String url = "jdbc:mysql://localhost:3306/proiect";
         String user = "root";
         String password = "Mercedes22012002!";
@@ -282,7 +398,7 @@ public class DatabaseApp extends Application {
         }
     }
 
-    private void deleteFromDatabase() {
+    private void deleteClientFromDatabase() {
         String url = "jdbc:mysql://localhost:3306/proiect";
         String user = "root";
         String password = "Mercedes22012002!";
@@ -302,7 +418,7 @@ public class DatabaseApp extends Application {
         }
     }
 
-    private void updateRecord() {
+    private void updateClientRecord() {
         String url = "jdbc:mysql://localhost:3306/proiect";
         String user = "root";
         String password = "Mercedes22012002!";
@@ -435,6 +551,98 @@ public class DatabaseApp extends Application {
 
                 // Reload data into the TableView after updating a record
                 loadMagazinData();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void addTranzactieToDatabase() {
+        String url = "jdbc:mysql://localhost:3306/proiect";
+        String user = "root";
+        String password = "Mercedes22012002!";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            String insertQuery = "INSERT INTO tranzactii (ID_tranzactie, ID_client, ID_magazin, suma_tranzactie, data_tranzactie) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+                preparedStatement.setInt(1, Integer.parseInt(tranzactieID.getText()));
+                preparedStatement.setInt(2, Integer.parseInt(tranzactieClientID.getText()));
+                preparedStatement.setInt(3, Integer.parseInt(tranzactieMagazinID.getText()));
+                preparedStatement.setDouble(4, Double.parseDouble(sumaTranzactie.getText()));
+                preparedStatement.setString(5, dataTranzactie.getText());
+                preparedStatement.executeUpdate();
+                System.out.println("Tranzactie added to the database");
+
+                // Reload data into the TranzactieTableView after adding a record
+                loadTranzactieData();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteTranzactieFromDatabase() {
+        String url = "jdbc:mysql://localhost:3306/proiect";
+        String user = "root";
+        String password = "Mercedes22012002!";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            String deleteQuery = "DELETE FROM tranzactii WHERE ID_tranzactie = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+                preparedStatement.setInt(1, Integer.parseInt(deleteTranzactieID.getText()));
+                preparedStatement.executeUpdate();
+                System.out.println("Tranzactie deleted from the database");
+
+                // Reload data into the TranzactieTableView after deleting a record
+                loadTranzactieData();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateTranzactieRecord() {
+        String url = "jdbc:mysql://localhost:3306/proiect";
+        String user = "root";
+        String password = "Mercedes22012002!";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            String updateQuery = "UPDATE tranzactii SET ID_client = ?, ID_magazin = ?, suma_tranzactie = ?, data_tranzactie = ? WHERE ID_tranzactie = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+                preparedStatement.setInt(1, Integer.parseInt(updatedTranzactieClientID.getText()));
+                preparedStatement.setInt(2, Integer.parseInt(updatedTranzactieMagazinID.getText()));
+                preparedStatement.setDouble(3, Double.parseDouble(updatedSumaTranzactie.getText()));
+                preparedStatement.setString(4, updatedDataTranzactie.getText());
+                preparedStatement.setInt(5, Integer.parseInt(updateTranzactieID.getText()));
+                preparedStatement.executeUpdate();
+                System.out.println("Tranzactie record updated in the database");
+
+                loadTranzactieData();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadTranzactieData() {
+        tranzactieTableView.getItems().clear();
+
+        String url = "jdbc:mysql://localhost:3306/proiect";
+        String user = "root";
+        String password = "Mercedes22012002!";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            String selectQuery = "SELECT * FROM tranzactii";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    int idTranzactie = resultSet.getInt("ID_tranzactie");
+                    int idClient = resultSet.getInt("ID_client");
+                    int idMagazin = resultSet.getInt("ID_magazin");
+                    double sumaTranzactie = resultSet.getDouble("suma_tranzactie");
+                    String dataTranzactie = resultSet.getString("data_tranzactie");
+
+                    tranzactieTableView.getItems().add(new Tranzactie(idTranzactie, idClient, idMagazin, sumaTranzactie, dataTranzactie));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
