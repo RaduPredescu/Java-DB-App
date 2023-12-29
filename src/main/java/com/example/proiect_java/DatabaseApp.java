@@ -147,7 +147,7 @@ public class DatabaseApp extends Application {
         updatedNumarTelefon = new TextField();
         GridPane.setConstraints(updatedNumarTelefon, 3, 4);
 
-        updateButton = new Button("Update Record");
+        updateButton = new Button("Update Client Record");
         updateButton.setOnAction(e -> updateClientRecord());
         GridPane.setConstraints(updateButton, 3, 5);
 
