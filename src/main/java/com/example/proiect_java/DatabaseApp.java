@@ -73,7 +73,6 @@ public class DatabaseApp extends Application {
         grid.setVgap(8);
         grid.setHgap(10);
 
-        // aici incepe client
         Label idLabel = new Label("ID:");
         GridPane.setConstraints(idLabel, 0, 0);
 
@@ -168,7 +167,6 @@ public class DatabaseApp extends Application {
         clientTableView.getColumns().addAll(idColumn, numeColumn, prenumeColumn, cnpColumn, numarTelefonColumn);
 
 
-        // aici incepe magazin
         Label magazinIdLabel = new Label("Magazin ID:");
         GridPane.setConstraints(magazinIdLabel, 4, 0);
 
@@ -390,7 +388,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Record added to the database");
 
-                // Reload data into the TableView after adding a record
                 loadClientData();
             }
         } catch (SQLException e) {
@@ -410,7 +407,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Record deleted from the database");
 
-                // Reload data into the TableView after deleting a record
                 loadClientData();
             }
         } catch (SQLException e) {
@@ -434,7 +430,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Record updated in the database");
 
-                // Reload data into the TableView after updating a record
                 loadClientData();
             }
         } catch (SQLException e) {
@@ -482,7 +477,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Magazin added to the database");
 
-                // Reload data into the MagazinTableView after adding a record
                 loadMagazinData();
             }
         } catch (SQLException e) {
@@ -502,7 +496,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Magazin deleted from the database");
 
-                // Reload data into the MagazinTableView after deleting a record
                 loadMagazinData();
             }
         } catch (SQLException e) {
@@ -549,7 +542,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Record updated in the database");
 
-                // Reload data into the TableView after updating a record
                 loadMagazinData();
             }
         } catch (SQLException e) {
@@ -572,7 +564,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Tranzactie added to the database");
 
-                // Reload data into the TranzactieTableView after adding a record
                 loadTranzactieData();
             }
         } catch (SQLException e) {
@@ -592,7 +583,6 @@ public class DatabaseApp extends Application {
                 preparedStatement.executeUpdate();
                 System.out.println("Tranzactie deleted from the database");
 
-                // Reload data into the TranzactieTableView after deleting a record
                 loadTranzactieData();
             }
         } catch (SQLException e) {
