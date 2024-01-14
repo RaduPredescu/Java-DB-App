@@ -59,6 +59,7 @@ public class DatabaseApp extends Application {
     private TextField updatedDataTranzactie;
     private Button updateTranzactieButton;
     private TableView<Tranzactie> tranzactieTableView;
+    private Button KillButton;
 
     public static void main(String[] args) {
         launch(args);
@@ -103,7 +104,7 @@ public class DatabaseApp extends Application {
         numarTelefon = new TextField();
         GridPane.setConstraints(numarTelefon, 1, 4);
 
-        Button addButton = new Button("Add to Database");
+        Button addButton = new Button("Add Client to Database");
         addButton.setOnAction(e -> addClientToDatabase());
         GridPane.setConstraints(addButton, 1, 5);
 
@@ -113,7 +114,7 @@ public class DatabaseApp extends Application {
         deleteID = new TextField();
         GridPane.setConstraints(deleteID, 1, 6);
 
-        Button deleteButton = new Button("Delete from Database");
+        Button deleteButton = new Button("Delete Client from Database");
         deleteButton.setOnAction(e -> deleteClientFromDatabase());
         GridPane.setConstraints(deleteButton, 1, 7);
 
@@ -328,6 +329,11 @@ public class DatabaseApp extends Application {
         updateTranzactieButton.setOnAction(e -> updateTranzactieRecord());
         GridPane.setConstraints(updateTranzactieButton, 11, 5);
 
+        KillButton = new Button("Kill database(only for emergency)");
+        updateTranzactieButton.setOnAction(e -> kill());
+        GridPane.setConstraints(KillButton, 20, 5);
+
+
         tranzactieTableView = new TableView<>();
         TableColumn<Tranzactie, Integer> tranzactieIdColumn = new TableColumn<>("Tranzactie ID");
         tranzactieIdColumn.setCellValueFactory(new PropertyValueFactory<>("idTranzactie"));
@@ -358,7 +364,7 @@ public class DatabaseApp extends Application {
                 deleteTranzactieIdLabel, deleteTranzactieID, deleteTranzactieButton,
                 updateTranzactieIdLabel, updateTranzactieID, updatedTranzactieClientIDLabel, updatedTranzactieClientID,
                 updatedTranzactieMagazinIDLabel, updatedTranzactieMagazinID, updatedSumaTranzactieLabel, updatedSumaTranzactie,
-                updatedDataTranzactieLabel, updatedDataTranzactie, updateTranzactieButton, tranzactieTableView
+                updatedDataTranzactieLabel, updatedDataTranzactie, updateTranzactieButton, tranzactieTableView,KillButton
         );
 
         Scene scene = new Scene(grid, 1200, 600);
@@ -638,4 +644,23 @@ public class DatabaseApp extends Application {
             e.printStackTrace();
         }
     }
+
+    private void kill() {
+        tranzactieTableView.getItems().clear();
+
+        String url = "jdbc:mysql://localhost:3306/proiect";
+        String user = "root";
+        String password = "Mercedes22012002!";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            String selectQuery = "DROP tranzactii";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
