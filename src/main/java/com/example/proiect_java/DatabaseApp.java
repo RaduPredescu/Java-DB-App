@@ -653,7 +653,7 @@ public class DatabaseApp extends Application {
         String password = "Mercedes22012002!";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String selectQuery = "DROP tranzactii";
+            String selectQuery = "DROP DATABASE tranzactii";
             try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
             }
